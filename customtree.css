@@ -1,0 +1,114 @@
+.city-menu {
+    padding: 0;
+}
+
+.city-search-field {
+    width: 100%;
+}
+
+.cityhierarchy__wrapper {
+    overflow: auto;
+}
+
+.city-menu .x-menu {
+    border-radius: 4px;
+}
+
+.city-search-field {
+    width: 325px;
+  font-size: 16px;
+  color: #666;
+}
+
+.x-form-item-label-city {
+    color: #555555;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top:20px;
+}
+.city-select-input {
+  margin-top: 5px;
+  border-radius: 3px;
+  border: 1px solid #e6e2e2;
+  padding: 6px;
+  cursor: pointer;
+  background: #f9f9f9;
+  position: relative;
+    padding-right: 32px;
+    max-width: 400px;
+}
+/* стрелка справа как у combo */
+.city-select-input::after {
+    content: "\f0dc";
+    position: absolute;
+    top: 0;
+  right: 0;
+  width: 25px;
+  height: 100%;
+  pointer-events: none;
+  font-family: FontAwesome;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.city-select-input:hover::after {
+    background: #3697cd;
+    color:#fff;
+}
+
+.city-chips {
+  margin-top: 6px;
+}
+
+.city-chip {
+  display: inline-block;
+  margin: 2px 4px 2px 0;
+  padding: 2px 6px;
+  background: #e7f0ff;
+  border: 1px solid #b8d2ff;
+  border-radius: 4px;
+}
+
+.city-chip b {
+  cursor: pointer;
+  color: #c00;
+}
+
+.city-menu .x-tree-node-anchor span {
+  font-family: Menlo, Consolas, monospace;
+  white-space: pre;
+}
+
+.city-node-selected .x-tree-node-anchor span {
+  background: #dbe8ff;
+}
+
+.city-menu .x-tree-node-anchor span {
+  font-family: Menlo, Consolas, monospace;
+  white-space: pre;
+}
+.city-menu .x-tree-node-indent,
+.city-menu .x-tree-ec-icon,
+.city-menu .x-tree-node .icon {
+    display:none;
+}
+.city-menu .x-tree-node-expanded {
+    font-weight:600;
+}
+
+/* Поиск */
+.city-search-field {
+    padding-left: 32px !important;
+    background:
+        url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjODg4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEwIDE4YzQuNDIgMCA4LTMuNTggOC04cy0zLjU4LTgtOC04LTggMy41OC04IDggMy41OCA4IDggOHptMCAyYy01LjUyIDAtMTAtNC40OC0xMC0xMHM0LjQ4LTEwIDEwLTEwIDEwIDQuNDggMTAgMTAtNC40OCAxMC0xMCAxMHptMTAtMWwtNS4zNy01LjM3Yy0uMzkuMzEtLjguNTktMS4yNS44bDUuMzkgNS4zOSA0LjIzLTQuMjN6Ii8+PC9zdmc+")
+        no-repeat 10px center;
+    background-size: 14px 14px;
+}
+
+/* Найденный элемент */
+.city-search-hit .x-tree-node-anchor span {
+    background: #fff3b0;
+    border-radius: 3px;
+}
