@@ -2,7 +2,11 @@ Ext.ns('CustomFields.field');
 
 CustomFields.field.CityHierarchyTree = function (config) {
     this.hiddenField   = config.hiddenField;
-    this.currentValue  = (config.value || '').split(',').filter(Boolean);
+    this.currentValue = (config.value || '')
+        .split('||')
+        .map(v => v.trim())
+        .filter(Boolean);
+    
     this.renderTo      = config.renderTo;
 
     this.nodeTitles    = {};
@@ -21,7 +25,7 @@ CustomFields.field.CityHierarchyTree.prototype = {
         this.fakeInput = Ext.DomHelper.append(this.renderTo, {
             tag: 'div',
             cls: 'city-select-input',
-            html: 'Выбрать город'
+            html: '<span class="city-placeholder">Выбрать город</span>'
         }, true);
 
         this.chipsWrap = Ext.DomHelper.append(this.fakeInput, {
@@ -37,9 +41,15 @@ CustomFields.field.CityHierarchyTree.prototype = {
 
     sync: function () {
         if (this.hiddenField) {
-            this.hiddenField.value = this.currentValue.join(',');
+            this.hiddenField.value = this.currentValue.join('||');
         }
         this.renderChips();
+        // управление placeholder
+        if (this.currentValue.length) {
+            this.fakeInput.addClass('has-value');
+        } else {
+            this.fakeInput.removeClass('has-value');
+        }
     },
 
     /* ===================== MENU ===================== */
@@ -218,28 +228,19 @@ CustomFields.field.CityHierarchyTree.prototype = {
     },
 
     highlightNode: function (node) {
-        // раскрываем родителей
         var p = node.parentNode;
         while (p) {
             if (p.expand) p.expand(false, false);
             p = p.parentNode;
         }
-    
-        node.getUI().addClass('city-search-hit');
-    
-        var el = node.getUI().getEl();
-        if (!el) return;
-    
-        // 🔥 СКРОЛЛ ТОЛЬКО ВНУТРИ TREE
-        var treeBody = this.tree.body;
-        if (!treeBody) return;
-    
-        var nodeY = Ext.fly(el).getY();
-        var bodyY = treeBody.getY();
-    
-        treeBody.dom.scrollTop += (nodeY - bodyY - 20);
-    },
 
+        node.getUI().addClass('city-search-hit');
+
+        var el = node.getUI().getEl();
+        if (el) {
+            el.scrollIntoView(this.tree.body);
+        }
+    },
 
     clearSearchHighlight: function () {
         if (!this.tree) return;
@@ -259,7 +260,7 @@ CustomFields.field.CityHierarchyTree.prototype = {
         }
 
         this.currentValue = v
-            .split(',')
+            .split('||')
             .map(s => s.trim())
             .filter(Boolean);
 
