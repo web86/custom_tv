@@ -37,6 +37,7 @@ CustomFields.field.CityHierarchyTree.prototype = {
 
         this.loadInitialTitles();
         this.renderChips();
+        this.updatePlaceholder();
     },
 
     sync: function () {
@@ -44,14 +45,19 @@ CustomFields.field.CityHierarchyTree.prototype = {
             this.hiddenField.value = this.currentValue.join('||');
         }
         this.renderChips();
-        // управление placeholder
+        this.updatePlaceholder();
+    },
+
+    updatePlaceholder: function () {
+        if (!this.fakeInput) return;
+    
         if (this.currentValue.length) {
             this.fakeInput.addClass('has-value');
         } else {
             this.fakeInput.removeClass('has-value');
         }
     },
-
+    
     /* ===================== MENU ===================== */
 
     openMenu: function (e) {
@@ -265,6 +271,7 @@ CustomFields.field.CityHierarchyTree.prototype = {
             .filter(Boolean);
 
         this.loadInitialTitles();
+        this.updatePlaceholder();
         return this;
     },
 
