@@ -121,17 +121,18 @@ CustomFields.field.CityHierarchyTree.prototype = {
         this.menuPanel = new Ext.Panel({
             width: 380,
             height: 380,
-            layout: 'anchor',
+            layout: 'border',
             border: false,
             items: [
                 {
+                    region: 'north',
                     xtype: 'container',
+                    height: 42,
                     style: 'padding:6px',
                     items: this.searchField
                 },
                 {
-                    xtype: 'container',
-                    anchor: '100% 100%',
+                    region: 'center',
                     layout: 'fit',
                     items: this.tree
                 }
@@ -144,6 +145,8 @@ CustomFields.field.CityHierarchyTree.prototype = {
             cls: 'city-menu',
             shadow: true,
             plain: true,
+            autoHeight: false,
+            autoWidth: false,
             items: this.menuPanel,
             listeners: {
                 hide: function () {
